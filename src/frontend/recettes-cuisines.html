@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../../dist/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="../../dist/useApi.js" defer></script>
+    <script type="module" src="../../dist/functionsCallApi.js" defer></script>
+    <script type="module" src="../../dist/script.js" defer></script>
     <title>Recettes de cuisines</title>
 </head>
 <body>
     <header id="header">
-        <button id="btn-disconnected">Déconnexion</button>
+        <button id="btn-disconnected" type="button">Déconnexion</button>
     </header>
     <main>
+        <button id="btn-addRecipe" type="button">Ajouter une recette</button>
         <ul id="recipes-list">
-            Liste des recettes
-            <!--chaque li contiendra article qui sera une recette-->
+            <h1>Listes des reccettes</h1>
         </ul>
     </main>
 </body>
