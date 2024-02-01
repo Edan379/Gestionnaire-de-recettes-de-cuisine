@@ -28,8 +28,8 @@ btnAddIngredient.addEventListener("click",()=>{
     ulIngredientsList.appendChild(tagInputLi);
 });
 
-let btnAddRecipe=document.getElementById("input-add-recipe");
-btnAddRecipe.addEventListener("submit",(e)=>{
-    e.preventDefault();
+let formEditRecipe=document.getElementById("register-to-edit-recipe");
+formEditRecipe.addEventListener("submit",(e)=>{
+    e.preventDefault(); console.log("formulaire soumis")
     //add data form to page recette-cuisines.html
 });

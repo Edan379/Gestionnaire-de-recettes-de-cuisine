@@ -11,22 +11,22 @@ let updateDom=(listRecipes)=>{
     listRecipes.forEach(recipe => {        
         let tagStrong=document.createElement("strong");
         tagStrong.classList.add("strong-recipe");
-        tagStrong.textContent=recipe.recipe.label;
+        tagStrong.textContent=recipe.titleRecipe;
 
         let tagImg=document.createElement("img");
         tagImg.classList.add("img-recipe");
-        tagImg.src=recipe.recipe.image;
+        tagImg.src=recipe.imgUrl;
         tagImg.alt="image de la recette";
         tagImg.style.display="block";
 
         let tagP=document.createElement("p");
         tagP.classList.add("p-time-recipe");
         tagP.style.display="inline-block";
-        tagP.textContent=`Durée ${recipe.recipe.totalTime}`;
+        tagP.textContent=`Durée ${recipe.cookingTime}`;
 
         let tagA=document.createElement("a");
         tagA.classList.add("a-recipe");
-        tagA.href="./detail.html";
+        tagA.href=`./detail.html?recette=${recipe.titleRecipe}`;
 
         //create button edit and remove
         let tagBtnEdit=document.createElement("button");
@@ -59,6 +59,8 @@ let updateDom=(listRecipes)=>{
 document.addEventListener("DOMContentLoaded", async() => {
     //resquest api to lists recipes
     let listRecipes = await getListRecipes(); console.log(listRecipes);
+
+    localStorage.setItem("listRecipes",JSON.stringify(listRecipes));
     updateDom(listRecipes);
 
     //event listener on btn-disconnected
