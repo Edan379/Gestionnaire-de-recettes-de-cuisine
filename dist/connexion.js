@@ -62,14 +62,14 @@ tagRegister.addEventListener("submit", (e) => {
     let memberData = firstElementChild.elements;
     console.log("memberData: ", memberData);
     let memberInfos = {
-        memberEmail: "",
-        memberPwd: ""
+        email: "",
+        password: "",
     };
     Array.from(memberData).forEach(element => {
         let input = element;
         if (input.type != "submit") {
             console.log(input.value, input.id);
-            memberInfos[input.id] = input.value;
+            memberInfos[input.className] = input.value;
         }
     });
     console.log("memberInfos: ", memberInfos);
@@ -77,12 +77,14 @@ tagRegister.addEventListener("submit", (e) => {
         let admins = JSON.parse(localStorage.getItem("admins"));
         console.log("admins ", admins);
         //comparate memberInfos with admins
-        let authenticMember = admins.filter((admin) => { return admin.email === memberInfos.memberEmail && admin.password === memberInfos.memberPwd; });
-        if (authenticMember.length != 0) { // authenticated member
-            console.log("authenticMember: ", authenticMember);
-            authenticMember[0].islogin = true;
-            console.log(authenticMember);
-            localStorage.setItem("adminLogin", JSON.stringify(authenticMember[0]));
+        let memberIndex = admins.findIndex((admin) => { return admin.email === memberInfos.email && admin.password === memberInfos.password; });
+        if (memberIndex !== -1) { // authenticated member
+            console.log("memberIndex: ", memberIndex);
+            admins[memberIndex].islogin = true;
+            console.log(admins);
+            localStorage.setItem("admins", JSON.stringify(admins));
+            memberInfos.isLogin = true;
+            localStorage.setItem("adminLogin", JSON.stringify(memberInfos));
             //redirection
             location.href = "./recettes-cuisines.html";
         }

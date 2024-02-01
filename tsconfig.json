@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
-    "outDir": "./dist"
+    "module": "ES6",
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src/frontend"
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "dist/functionsCallApi.d.ts", "src/frontend/script.js"  ],
   "exclude": [
     "node_modules"
   ]
