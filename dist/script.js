@@ -1,12 +1,5 @@
 import { getListRecipes } from "../../dist/functionsCallApi.js";
 
-if (localStorage.getItem("adminLogin")) {
-    console.log("connecté");
-}
-else {
-    location.href = "./connexion.html";
-}
-
 let updateDom=(listRecipes)=>{
     listRecipes.forEach(recipe => {        
         let tagStrong=document.createElement("strong");
@@ -42,7 +35,17 @@ let updateDom=(listRecipes)=>{
         tagBtnRemove.type="button";
         tagBtnRemove.textContent="Supprimer";
         tagBtnRemove.addEventListener("click",()=>{
-            //supprimer la recette
+            //remove recipe on list recipe 
+            let parentLi=tagBtnRemove.parentNode
+            parentLi.parentNode.removeChild(parentLi);
+
+            //remove recipe on localstorage
+            let listRecipes=JSON.parse(localStorage.getItem("listRecipes"));
+            let recipeIndex=listRecipes.findIndex(recipe=>recipe.titleRecipe===parentLi.firstElementChild.firstElementChild.textContent);
+            if(recipeIndex!==-1){
+                listRecipes.splice(recipeIndex,1);
+            }
+            localStorage.setItem("listRecipes",JSON.stringify(listRecipes));
         })
 
         tagA.append(tagStrong,tagImg,tagP);
@@ -56,32 +59,46 @@ let updateDom=(listRecipes)=>{
     });
 }
 
-document.addEventListener("DOMContentLoaded", async() => {
-    //resquest api to lists recipes
-    let listRecipes = await getListRecipes(); console.log(listRecipes);
+if (localStorage.getItem("adminLogin")) {
+    console.log("connecté");
+    
+    if(localStorage.getItem("listRecipes")===null){
+        //resquest api to get lists recipes
+        let listRecipes = await getListRecipes(); console.log(listRecipes);
+        
+        // add listRecipes in localstorage
+        localStorage.setItem("listRecipes",JSON.stringify(listRecipes));
 
-    localStorage.setItem("listRecipes",JSON.stringify(listRecipes));
-    updateDom(listRecipes);
+        updateDom(listRecipes);
+    }else{//get list Recipes in localstorage
+        let listRecipes=JSON.parse(localStorage.getItem("listRecipes"));
 
-    //event listener on btn-disconnected
-    let tagBtnDisconnected = document.getElementById("btn-disconnected");
-    tagBtnDisconnected.addEventListener("click", () => {
-        let adminLogin = JSON.parse(localStorage.getItem("adminLogin"));
-        let admins = JSON.parse(localStorage.getItem("admins"));
-        console.log(adminLogin, admins);
-        let adminIndex = admins.findIndex((admin) => {
-            return admin.email === adminLogin.email &&
-                admin.password === adminLogin.password;
-        });
-        if (adminIndex !== -1) {
-            admins[adminIndex].islogin = false;
-        }
-        console.log(admins);
-        localStorage.setItem("admins", JSON.stringify(admins));
-        localStorage.removeItem("adminLogin");
-        location.href = "./connexion.html";
+        updateDom(listRecipes);
+    }
+}
+else {//redirection to connexion.html
+    location.href = "./connexion.html";
+}
+
+//event listener on btn-disconnected
+let tagBtnDisconnected = document.getElementById("btn-disconnected");
+tagBtnDisconnected.addEventListener("click", () => {
+    let adminLogin = JSON.parse(localStorage.getItem("adminLogin"));
+    let admins = JSON.parse(localStorage.getItem("admins"));
+    console.log(adminLogin, admins);
+    let adminIndex = admins.findIndex((admin) => {
+        return admin.email === adminLogin.email &&
+            admin.password === adminLogin.password;
     });
-
-    let tagBtnAddRecipe = document.getElementById("btn-addRecipe");
-    tagBtnAddRecipe.addEventListener("click", () => location.href = "./addRecipe.html");
+    if (adminIndex !== -1) {
+        admins[adminIndex].islogin = false;
+    }
+    console.log(admins);
+    localStorage.setItem("admins", JSON.stringify(admins));
+    localStorage.removeItem("adminLogin");
+    location.href = "./connexion.html";
 });
+
+////event listener on btn-addRecipe
+let tagBtnAddRecipe = document.getElementById("btn-addRecipe");
+tagBtnAddRecipe.addEventListener("click", () => location.href = "./addRecipe.html");

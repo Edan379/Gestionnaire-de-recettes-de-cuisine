@@ -17,8 +17,8 @@
                 <label for="ingredients">Ingrédients:</label>
                 <ul id="ingredients-list">
                     <li>
-                        <input type="text" name="ingredient" placeholder="Nom de l'ingrédient" required>
-                        <input type="text" name="quantity" placeholder="Quantité" required>
+                        <input id="ingredient" type="text" name="ingredient" placeholder="Nom de l'ingrédient" required>
+                        <input id="qty" type="text" name="quantity" placeholder="Quantité" required>
                     </li>
                 </ul>
                 <button id="btn-add-ingredient" type="button">Ajouter Ingrédient</button>
@@ -30,8 +30,11 @@
                 <label for="cookingTime">Temps de Cuisson (en minutes):</label>
                 <input type="number" id="cookingTime" name="cookingTime" required>
                 <br>
+                <label for="recipe-img-url">URL de la photo de la recette :</label>
+                <input id="recipe-img-url" type="text" id="imageUrl" name="imageUrl" required >
                 <br>
-                <input type="submit" id="input-add-recipe"value="Ajouterla recette">
+                <br>
+                <input type="submit" id="input-add-recipe"value="Ajouter la recette">
             </fieldset>
         </form>
     </main>

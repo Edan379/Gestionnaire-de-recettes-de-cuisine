@@ -2,6 +2,9 @@ let updateDom=(recipeFound)=>{console.log(recipeFound)
     let tagH1Recipe=document.getElementById("h1");
     tagH1Recipe.textContent=recipeFound.titleRecipe;
 
+    let tagPMealType=document.getElementById("mealType");
+    tagPMealType.textContent=recipeFound.mealType;
+
     let tagImgRecipe=document.getElementById("imgRecipe");
     tagImgRecipe.src=recipeFound.imgUrl;
 
@@ -16,6 +19,27 @@ let updateDom=(recipeFound)=>{console.log(recipeFound)
 
     let tagPCookingTime=document.getElementById("cooking-time");
     tagPCookingTime.textContent=`Temps de cuisson : ${recipeFound.cookingTime} minutes`;
+
+    //check if recipeFound.preparationSteps is an url 
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    if(urlRegex.test(recipeFound.preparationSteps)){
+        let btnInstruction=document.createElement("button");
+        btnInstruction.textContent="Instructions";
+        btnInstruction.addEventListener("click",()=>location.href=recipeFound.preparationSteps);
+        
+        let tagArt=document.getElementById("art-recipe");
+        tagArt.appendChild(btnInstruction);
+    }else{
+        //create tag h2
+        let tagH2=document.createElement("h2");
+        tagH2.textContent="Instructions";
+
+        //create a tag p to add instructions steps
+        let tagPInstructions=document.createElement("p");
+        tagPInstructions.textContent=recipeFound.preparationSteps;
+        let tagArt=document.getElementById("art-recipe");
+        tagArt.append(tagH2,tagPInstructions);
+    }
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
