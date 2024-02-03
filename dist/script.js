@@ -99,6 +99,31 @@ tagBtnDisconnected.addEventListener("click", () => {
     location.href = "./connexion.html";
 });
 
-////event listener on btn-addRecipe
+//event listener on btn-addRecipe
 let tagBtnAddRecipe = document.getElementById("btn-addRecipe");
 tagBtnAddRecipe.addEventListener("click", () => location.href = "./addRecipe.html");
+
+//event listener on register-search
+let tagFormSearchRecipe=document.getElementById("register-search");
+tagFormSearchRecipe.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    let recipeTitleToSearch=tagFormSearchRecipe.firstElementChild.value;
+
+    //get listRecipes to localstorage
+    let listRecipes=JSON.parse(localStorage.getItem("listRecipes"));
+
+    //browse listRecipes
+    let recipesListFound=listRecipes.filter(recipe=>{
+        return recipe.titleRecipe.toLowerCase().indexOf(recipeTitleToSearch.toLowerCase())>=0
+    })
+    console.log(recipesListFound)
+    if(recipesListFound){
+        console.log("ici")
+        let tagUlRecipesList=document.getElementById("recipes-list");
+        console.dir(tagUlRecipesList.children);
+        let recipesList=tagUlRecipesList.children;
+        recipesList=Array.from(recipesList);
+        recipesList.forEach(recipe => recipe.remove());
+        updateDom(recipesListFound);
+    }
+})
