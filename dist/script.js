@@ -107,8 +107,9 @@ tagBtnAddRecipe.addEventListener("click", () => location.href = "./addRecipe.htm
 let tagFormSearchRecipe=document.getElementById("register-search");
 tagFormSearchRecipe.addEventListener("submit",(e)=>{
     e.preventDefault();
-    let recipeTitleToSearch=tagFormSearchRecipe.firstElementChild.value;
-
+    console.dir(tagFormSearchRecipe)
+    let recipeTitleToSearch=Array.from(tagFormSearchRecipe.elements)[0].value;
+    console.log(recipeTitleToSearch)
     //get listRecipes to localstorage
     let listRecipes=JSON.parse(localStorage.getItem("listRecipes"));
 
