@@ -36,13 +36,13 @@ if (localStorage.getItem("adminLogin")) {
         ulIngredientsList.appendChild(tagInputLi);
     });
     
-    let formEditRecipe=document.getElementById("register-to-edit-recipe");
-    formEditRecipe.addEventListener("submit",(e)=>{
+    let formAddRecipe=document.getElementById("register-to-add-recipe");
+    formAddRecipe.addEventListener("submit",(e)=>{
         e.preventDefault(); console.log("formulaire soumis");
         //remove alert tagSpanErrorUrl
         if(document.getElementById("span-error-url"))document.getElementById("span-error-url").remove();
     
-        let formTagsList=formEditRecipe.firstElementChild.elements;
+        let formTagsList=formAddRecipe.firstElementChild.elements;
         
         //convert formTagsList to array
         formTagsList=Array.from(formTagsList);
@@ -51,6 +51,7 @@ if (localStorage.getItem("adminLogin")) {
         let newRecipe={ingredientsList:null};
     
         //get values of tags in formTagsList
+        console.log(formTagsList)
         formTagsList.forEach(tag => {
             if(tag.id==="title-recipe"){
                 newRecipe["titleRecipe"]=tag.value;
@@ -85,15 +86,20 @@ if (localStorage.getItem("adminLogin")) {
             else if(tag.localName==="textarea"){
                 newRecipe["preparationSteps"]=tag.value;
             }
-        });
+            else if(tag.id ==="select-category"){
+                console.log(tag.value);
+                newRecipe["category"]=tag.value;
+            }
+        }); 
+
         //convert ingredientList property value to array
         newRecipe["ingredientsList"]=newRecipe["ingredientsList"].split("otherIngredientendd");
         
-        //remove a substring in ingredientList property[0]
-        console.log(newRecipe["ingredientsList"][0].replace("endd",""))
+        //replace a substring in ingredientList property[0]
         newRecipe["ingredientsList"][0]=newRecipe["ingredientsList"][0].replace("endd","");
-    
-        console.log(recipeNewList);
+        
+        //inverse value in newRecipe["ingredientsList"]
+        newRecipe["ingredientsList"].reverse();
     
         //add newRecipe in listRecipes of localstorage
         let listRecipes=JSON.parse(localStorage.getItem("listRecipes"));

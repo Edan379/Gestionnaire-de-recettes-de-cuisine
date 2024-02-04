@@ -127,3 +127,33 @@ tagFormSearchRecipe.addEventListener("submit",(e)=>{
         updateDom(recipesListFound);
     }
 })
+
+//event listener on registerSearchByCategory
+let tagFormSearchByCategory=document.getElementById("registerSearchByCategory");
+tagFormSearchByCategory.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    //let dish=document.getElementById("select-category").value;
+    //console.log(dish);
+    console.dir(document.getElementById("select-category"));
+    let tagSelect=document.getElementById("select-category");
+    console.log(tagSelect);
+    let valueChoice=tagSelect.options[tagSelect.selectedIndex].value;
+    console.log(valueChoice);
+    //get listRecipes to localstorage
+    let listRecipes=JSON.parse(localStorage.getItem("listRecipes"));
+    console.log(listRecipes);
+
+    //browse listRecipes
+    let recipesListFound=listRecipes.filter(recipe=>{
+        return recipe.category === valueChoice
+    })
+    //console.log(recipesListFound);
+    if(recipesListFound){
+        let tagUlRecipesList=document.getElementById("recipes-list");
+        console.dir(tagUlRecipesList.children);
+        let recipesList=tagUlRecipesList.children;
+        recipesList=Array.from(recipesList);
+        recipesList.forEach(recipe => recipe.remove());
+        updateDom(recipesListFound);
+    }
+})
