@@ -27,7 +27,7 @@ let updateDom=(listRecipes)=>{
         tagBtnEdit.type="button";
         tagBtnEdit.textContent="Modifier";
         tagBtnEdit.addEventListener("click",()=>{
-            window.location.href="./edit.html";
+            window.location.href="./edit.html?titleRecipe="+recipe.titleRecipe;
         })
 
         let tagBtnRemove=document.createElement("button");
