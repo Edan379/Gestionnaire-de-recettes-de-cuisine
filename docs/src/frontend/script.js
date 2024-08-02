@@ -1,4 +1,4 @@
-import { getListRecipes } from "../../dist/functionsCallApi.js";
+import { getListRecipes } from "./functionsCallApi.js";
 
 let updateDom=(listRecipes)=>{
     listRecipes.forEach(recipe => {        
