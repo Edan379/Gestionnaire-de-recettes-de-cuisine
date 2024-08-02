@@ -1,3 +1,4 @@
-#section-sign-up,#section-login{
-    display: inline-block;
+#section-sign-up,
+#section-login {
+  display: inline-block;
 }

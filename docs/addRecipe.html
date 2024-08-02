@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./addRecipe.js"defer></script>
-    <title>Ajoutons une recette !</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./addRecipe.js" defer></script>
+  <title>Ajoutons une recette !</title>
 </head>
+
 <body>
-    <main>
-        <form id="register-to-add-recipe">
-            <fieldset>
-                <legend>Créer une recette</legend>
-                <label for="">Titre de la recette</label>
-                <input type="text" id="title-recipe" required>
-                <br>
-                <label for="select-category">Catégorie de plat:</label>
-                <select id="select-category">
-                    <option id="entrance">Entrée</option>
-                    <option id="main">Plat principal</option>
-                    <option id="Dessert">Dessert</option>
-                </select>
-                <br>
-                <label for="ingredients">Ingrédients:</label>
-                <ul id="ingredients-list">
-                    <li>
-                        <input id="ingredient" type="text" name="ingredient" placeholder="Nom de l'ingrédient" required>
-                        <input id="qty" type="text" name="quantity" placeholder="Quantité" required>
-                    </li>
-                </ul>
-                <button id="btn-add-ingredient" type="button">Ajouter Ingrédient</button>
-                <br>
-                <br>
-                <label style="display: block;" for="preparation-steps">Étapes de Préparation:</label>
-                <textarea id="preparation-steps" name="preparationSteps" rows="6" cols="50" required></textarea>
-                <br>
-                <label for="cookingTime">Temps de Cuisson (en minutes):</label>
-                <input type="number" id="cookingTime" name="cookingTime" required>
-                <br>
-                <label for="recipe-img-url">URL de la photo de la recette :</label>
-                <input id="recipe-img-url" type="text" id="imageUrl" name="imageUrl" required >
-                <br>
-                <br>
-                <input type="submit" id="input-add-recipe"value="Ajouter la recette">
-            </fieldset>
-        </form>
-    </main>
+  <main>
+    <form id="register-to-add-recipe">
+      <fieldset>
+        <legend>Créer une recette</legend>
+        <label for="">Titre de la recette</label>
+        <input type="text" id="title-recipe" required>
+        <br>
+        <label for="select-category">Catégorie de plat:</label>
+        <select id="select-category">
+          <option id="entrance">Entrée</option>
+          <option id="main">Plat principal</option>
+          <option id="Dessert">Dessert</option>
+        </select>
+        <br>
+        <label for="ingredients">Ingrédients:</label>
+        <ul id="ingredients-list">
+          <li>
+            <input id="ingredient" type="text" name="ingredient" placeholder="Nom de l'ingrédient" required>
+            <input id="qty" type="text" name="quantity" placeholder="Quantité" required>
+          </li>
+        </ul>
+        <button id="btn-add-ingredient" type="button">Ajouter Ingrédient</button>
+        <br>
+        <br>
+        <label style="display: block;" for="preparation-steps">Étapes de Préparation:</label>
+        <textarea id="preparation-steps" name="preparationSteps" rows="6" cols="50" required></textarea>
+        <br>
+        <label for="cookingTime">Temps de Cuisson (en minutes):</label>
+        <input type="number" id="cookingTime" name="cookingTime" required>
+        <br>
+        <label for="recipe-img-url">URL de la photo de la recette :</label>
+        <input id="recipe-img-url" type="text" id="imageUrl" name="imageUrl" required>
+        <br>
+        <br>
+        <input type="submit" id="input-add-recipe" value="Ajouter la recette">
+      </fieldset>
+    </form>
+  </main>
 </body>
+
 </html>

@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="./useApi.js"></script>
-    <script type="module" src="./functionsCallApi.js"></script>
-    <script type="module" src="./script.js"></script>
-    <title>Recettes de cuisines</title>
-</head>
-<body>
-    <header id="header">
-        <button id="btn-disconnected" type="button">Déconnexion</button>
-    </header>
-    <main>
-        <button id="btn-addRecipe" type="button">Ajouter une recette</button>
-        <form id="register-search">
-            <label for="search-recipe">Titre du plât:</label>
-            <input id="search-recipe" type="text" placeholder="Taper le titre d'une recette">
-            <label for="search-recipe"></label>
-            <input id="input-submit" type="submit" value="Rechercher">
-        </form>
-        <form id="registerSearchByCategory">
-            <label for="select-category">Catégorie de plât:</label>
-            <select id="select-category" name="Catégorie plat">
-                <option id="entrance" value="Entrée">Entrée</option>
-                <option id="main" value="Plat principal">Plat principal</option>
-                <option id="dessert" value="Dessert">Dessert</option>
-            </select>
-            <input id="input-submit-category" type="submit" value="Rechercher">
-        </form>
-        <h1>Listes des reccettes</h1>
-        <ul id="recipes-list">
 
-        </ul>
-    </main>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module" src="./useApi.js"></script>
+  <script type="module" src="./functionsCallApi.js"></script>
+  <script type="module" src="./script.js"></script>
+  <title>Recettes de cuisines</title>
+</head>
+
+<body>
+  <header id="header">
+    <button id="btn-disconnected" type="button">Déconnexion</button>
+  </header>
+  <main>
+    <button id="btn-addRecipe" type="button">Ajouter une recette</button>
+    <form id="register-search">
+      <label for="search-recipe">Titre du plât:</label>
+      <input id="search-recipe" type="text" placeholder="Taper le titre d'une recette">
+      <label for="search-recipe"></label>
+      <input id="input-submit" type="submit" value="Rechercher">
+    </form>
+    <form id="registerSearchByCategory">
+      <label for="select-category">Catégorie de plât:</label>
+      <select id="select-category" name="Catégorie plat">
+        <option id="entrance" value="Entrée">Entrée</option>
+        <option id="main" value="Plat principal">Plat principal</option>
+        <option id="dessert" value="Dessert">Dessert</option>
+      </select>
+      <input id="input-submit-category" type="submit" value="Rechercher">
+    </form>
+    <h1>Listes des reccettes</h1>
+    <ul id="recipes-list">
+
+    </ul>
+  </main>
 </body>
+
 </html>
