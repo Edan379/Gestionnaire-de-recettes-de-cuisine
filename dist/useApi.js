@@ -5,7 +5,7 @@ if (typeof axios === 'undefined') {
 const useApi=() => {
 
     const headers = {
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': 'https://api.edamam.com',
     };
 
     // Création d'une instance Axios
